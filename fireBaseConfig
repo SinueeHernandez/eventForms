@@ -1,0 +1,14 @@
+
+<script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAWnzqCPvyWsBC1WLzfcDJ_Yc5Jxj2wZQ8",
+    authDomain: "eventformsdb.firebaseapp.com",
+    databaseURL: "https://eventformsdb.firebaseio.com",
+    projectId: "eventformsdb",
+    storageBucket: "eventformsdb.appspot.com",
+    messagingSenderId: "38192161139"
+  };
+  firebase.initializeApp(config);
+</script>
