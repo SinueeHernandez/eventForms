@@ -3,10 +3,30 @@
   <h1>
     Welcome to {{title}}!
   </h1>
+  
+  <div name="list-area">
+    <ul>
+      <li *ngFor="let item of messages | async">
+        <input type="text" #updatetext [value]="item.text" />
+        <button (click)="updateItem(item.$key, updatetext.value)">Update</button>
+        <button (click)="deleteItem(item.$key)">Delete</button>
+      </li>
+    </ul>
+  </div>
+  <div name="New">
+  <input type="text" #newitem />
+  <button (click)="addItem(newitem.value)">Add</button>
+  <button (click)="deleteEverything()">Delete All</button>
+</div>
 
 <ul>
-  <li class="text" *ngFor="let item of items | async">
-    {{item.$value}}
+  <li *ngFor="let item of items | async">
+    {{ item.text }}
   </li>
 </ul>
-
+<div>
+  <h4>Filter by size</h4>
+  <button (click)="filterBy('small')">Small</button>
+  <button (click)="filterBy('medium')">Medium</button>
+  <button (click)="filterBy('large')">Large</button>
+</div>
