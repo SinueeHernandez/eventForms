@@ -1,19 +1,31 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:right">
+<div> {{ (user | async)?.uid }} </div>
+<button (click)="login()">Login</button>
+<button (click)="logout()">Logout</button>
+</div>
+<div *ngIf="!loged">
+  <label>email</label>
+  <input type="text" #newEmail [value]="email" (change)="email=newEmail.value"/>
+  <label>password</label>
+  <input type="password" #newPassword [value]="password" (change)="password=newPassword.value"/>
+  <button (click)="signUp()">Sign Up</button>
+</div>
 <div style="text-align:center">
   <h1>
     Welcome to {{title}}!
   </h1>
-  
-  <div name="list-area">
-    <ul>
-      <li *ngFor="let item of messages | async">
-        <input type="text" #updatetext [value]="item.text" />
-        <button (click)="updateItem(item.$key, updatetext.value)">Update</button>
-        <button (click)="deleteItem(item.$key)">Delete</button>
-      </li>
-    </ul>
-  </div>
-  <div name="New">
+</div>
+<div name="list-area">
+  <ul>
+    <li *ngFor="let item of messages | async">
+      <input type="text" #updatetext [value]="item.text" />
+      <button (click)="updateItem(item.$key, updatetext.value)">Update</button>
+      <button (click)="deleteItem(item.$key)">Delete</button>
+    </li>
+  </ul>
+</div>
+<div name="New">
   <input type="text" #newitem />
   <button (click)="addItem(newitem.value)">Add</button>
   <button (click)="deleteEverything()">Delete All</button>
