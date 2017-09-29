@@ -1,15 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:right">
-<div> {{ (user | async)?.uid }} </div>
-<button (click)="login()">Login</button>
-<button (click)="logout()">Logout</button>
+  <div> {{ (user | async)?.uid }} </div>
+  <button (click)="login()">Login</button>
+  <button (click)="logout()">Logout</button>
 </div>
 <div *ngIf="!loged">
-  <label>email</label>
-  <input type="text" #newEmail [value]="email" (change)="email=newEmail.value"/>
-  <label>password</label>
-  <input type="password" #newPassword [value]="password" (change)="password=newPassword.value"/>
-  <button (click)="signUp()">Sign Up</button>
+      <label>email</label>
+      <input type="text" #newEmail [value]="email" (change)="email=newEmail.value" />
+      <label>password</label>
+    <input type="password" #newPassword [value]="password" (change)="password=newPassword.value" />
+    <button (click)="signUp()">Sign Up</button>
 </div>
 <div style="text-align:center">
   <h1>
@@ -41,4 +41,42 @@
   <button (click)="filterBy('small')">Small</button>
   <button (click)="filterBy('medium')">Medium</button>
   <button (click)="filterBy('large')">Large</button>
+</div>
+<div>
+    <form class="example-form">
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="State" aria-label="State" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+          <md-autocomplete #auto="mdAutocomplete">
+            <md-option *ngFor="let state of filteredStates | async" [value]="state.name">
+              <img style="vertical-align:middle;" aria-hidden src="{{state.flag}}" height="25" />
+              <span>{{ state.name }}</span> |
+              <small>Population: {{state.population}}</small>
+            </md-option>
+          </md-autocomplete>
+        </md-form-field>
+      
+        <br />
+      
+        <md-slide-toggle
+          [checked]="stateCtrl.disabled"
+          (change)="stateCtrl.disabled ? stateCtrl.enable() : stateCtrl.disable()">
+          Disable Input?
+        </md-slide-toggle>
+      </form>
+</div>
+
+
+<!-- <button (click)="injectHtmlToDocument()">Injecting Some HTML</button>
+<div class="formHere" #formHere>
+
+</div> -->
+<div #FormTemplate>
+  <form>
+    <div #fieldElement *ngFor="let element of fieldElements; let i = index ">
+        <md-form-field *ngIf="element.type=='Autocomplete'" class="example-full-width">
+            <input mdInput placeholder="{{element.label}}" aria-label="element.label"  [formControl]="element.value">
+        </md-form-field>
+        <!-- Add one for any type of input -->
+    </div>
+  </form>
 </div>
